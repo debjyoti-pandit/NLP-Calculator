@@ -1,6 +1,7 @@
 import spacy
 import nltk
 from word2number import w2n
+import trial3 as file_list
 nlp = spacy.load("en")
 
 ##GLOBAL VARIABLES
@@ -113,16 +114,17 @@ def check_two_cd(l):
           l.insert(z,("subtract","NN"))
      return l
 
-def calculate():
+def calculate(string):
+     f_ques = string
      list_ques = []
      stack = Stack()
      temporary = ""
-     string = 'addition of product of 2 plus 4 and 7 with the difference of 7 from 3'
+##     string = 'addition of product of 2 plus 4 and 7 with the difference of 7 from 3'
 ##     string = input("Enter your question: ")
      doc = nlp(string)
      main = ""
      for token in doc:
-     ##    print(token.text,token.tag_)
+##         print(token.text,token.tag_)
          if token.tag_ != "CD":
      ##          tag = token.tag_
              token = str(token.lemma_)
@@ -132,7 +134,7 @@ def calculate():
      ##print("string lemma:",main)
      doc2 = nlp(main)
      for token in doc2:
-     ##     print(token.text,token.tag_)
+##          print(token.text,token.tag_)
           if token.tag_ in check:
                tag = token.tag_
                token = str(token)
@@ -144,7 +146,7 @@ def calculate():
      ##expression function
      c1 = ['NN','VB','VBN','VBG','JJ']
      c2 = ['CC','TO','SYM',',']
-     prep = ['with','to','from']
+     prep = ['with','to','from','by']
      prep_direct = ['into','minus']
      nn_exp = ['result','cube','root','square','minus','point']
      list_ques = remove_hash(list_ques)
@@ -187,8 +189,12 @@ def calculate():
      if not stack.isEmpty():
           del ques[0]
      ques = check_two_cd(ques)
-     print("Expression for your question is = ",ques)
-     print("The answer: ",evaluate(ques))
+##     print("Expression for your question is = ",ques)
+     ans = evaluate(ques)
+     print("The answer: ",ans)
+     f_ques += "\t"+str(ans)
+     file_list.add_element(f_ques)
+     
 
 
 ##print("press 1 to enter testing mode")
@@ -200,5 +206,4 @@ def calculate():
 ##     calculate()
 ##else:
 ##     print("please enter a valid input")
-calculate()
-
+calculate("Sum of three,four,five and six")
