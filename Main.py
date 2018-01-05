@@ -1,15 +1,17 @@
 import spacy
 import nltk
 from word2number import w2n
-import trial3 as file_list
+import FileHandeling as file_list
+import bracket as b
 nlp = spacy.load("en")
 
 ##GLOBAL VARIABLES
-check = ['NN','CC','CD','IN','JJ','TO','VB','VBN','SYM',',']
-sub = ['subtraction','subtract','difference','minus']
+check = ['NN','CC','CD','IN','JJ','TO','VB','VBN','SYM',',','HYPH']
+sub = ['subtraction','subtract','difference','minus','-']
 add = ['add','sum','addition','plus']
 mult = ['multiply','product','multiplication','into']
 div = ['division','divide','by']
+brac = ['(',')']
 union = ['subtraction','subtract','difference','minus','add','sum','addition','plus',
          'multiply','product','multiplication','into','division','divide','by']
 ##MENU
@@ -79,6 +81,8 @@ def evaluate(q):
                    final_ques += "*"
               elif w[0] in div:
                    final_ques += "/"
+              elif w[0] in brac:
+                   final_ques += str(w[0])
 ##              elif w[0] == "point":
 ##                   final_ques += "point"
          else:
@@ -114,6 +118,7 @@ def check_two_cd(l):
           l.insert(z,("subtract","NN"))
      return l
 
+
 def calculate(string):
      f_ques = string
      list_ques = []
@@ -126,12 +131,10 @@ def calculate(string):
      for token in doc:
 ##         print(token.text,token.tag_)
          if token.tag_ != "CD":
-     ##          tag = token.tag_
              token = str(token.lemma_)
          main += str(token)
          main += " "
 
-     ##print("string lemma:",main)
      doc2 = nlp(main)
      for token in doc2:
 ##          print(token.text,token.tag_)
@@ -140,8 +143,8 @@ def calculate(string):
                token = str(token)
                list_ques.append((token.lower(),tag))
 
-##     print("list before expression function: ",list_ques)          
      list_ques = merge_cd(list_ques)
+     list_ques = b.precedence(list_ques)
      ques = []
      ##expression function
      c1 = ['NN','VB','VBN','VBG','JJ']
@@ -149,6 +152,7 @@ def calculate(string):
      prep = ['with','to','from','by']
      prep_direct = ['into','minus']
      nn_exp = ['result','cube','root','square','minus','point']
+     conj_exp = ['minus','plus']
      list_ques = remove_hash(list_ques)
      for w in list_ques:
           tl = w
@@ -157,14 +161,13 @@ def calculate(string):
                if w[0] in nn_exp:
                     ques.append((w[0],w[1]))
                elif w[0] in union:
-     ##               print("pushing ",w[0])
                     stack.push(w[0])
                     temporary = w[0]
           elif w[1] in c2:
                if w[1] == "SYM":
                     ques.append((w[0],w[1]))
                elif w[1] == "CC":
-                    if w[0] == "plus":
+                    if w[0] in conj_exp:
                          ques.append((w[0],w[1]))
                     else:
                          if not stack.isEmpty():
@@ -184,26 +187,34 @@ def calculate(string):
           else:
                ques.append((w[0],w[1]))
 
-##     print("question: ",ques)
-##     print(stack.pop())
      if not stack.isEmpty():
           del ques[0]
      ques = check_two_cd(ques)
 ##     print("Expression for your question is = ",ques)
      ans = evaluate(ques)
-     print("The answer: ",ans)
-     f_ques += "\t"+str(ans)
-     file_list.add_element(f_ques)
-     
+     return ans
 
+def test():
+     l = file_list.test()
+     m = []
+     ctr = 0
+     for w in l:
+          m = w.split("\t")
+          a = calculate(str(m[0]))
+          print("a: ",a," and ",m[1])
+          if str(a) == str(m[1]):
+               ctr = ctr + 1
+     print("No. of test case runned: ",len(l))
+     print("No. of correct answer: ",ctr)
+     print("Accuracy: ",(ctr/len(l))*100)
 
-##print("press 1 to enter testing mode")
-##print("press 2 to enter calculate mode")
-##choice = str(input("please enter your choice: "))
-##if choice == "1":
-##     test()
-##elif choice == "2":
-##     calculate()
-##else:
-##     print("please enter a valid input")
-calculate("Sum of three,four,five and six")
+print("press 1 to enter testing mode")
+print("press 2 to enter calculate mode")
+choice = str(input("please enter your choice: "))
+if choice == "1":
+     test()
+elif choice == "2":
+##     zzz = str(input("please enter your ques: "))
+     print("The answer: ",calculate("product of sum of product of sum of product of sum of 2 and 3 and 4 and 5 and 6 and 7 and product of 2 and 3"))
+else:
+     print("please enter a valid input")
