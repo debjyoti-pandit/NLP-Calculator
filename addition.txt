@@ -1,0 +1,25 @@
+Sum of three,four,five and six	18
+3 minus 6	-3
+addition of five and six	11
+eight - one	7
+difference of ten and three	7
+difference between eight and two	6
+subtract one from seven	6
+two minus one	1
+sum of 5 and ten	15
+product of sum of 5 and 6 and the sum of 7 and 8	165
+product of sum of 2 and 3 and 4	20
+what is the result when 105 is divided by 21	5.0
+add two million and three million	5000000
+what happens when 7676 is added to 24	7700
+what is the result after adding 25 and 75	100
+add fifty six with one hundred four	160
+product of sum of product of sum of product of sum of 2 and 3 and 4 and 5 and 6 and 7 and product of 2 and 3	942
+product of 5 and division of 100 by 10 with the product of addition of 5 and 6 and 7	3850
+sum of division of 3 by 6 and four and 3 multiplied by 7	25.5
+minus two multiplied by six	-12
+six added to the sum of minus two and minus seven	-3
+one plus minus two plus three plus minus four plus five	3
+sum of square root of 5 plus 7 and the product of 4 and 5	25.65685424949238
+sum of square root of 40 plus 60 and the product of 4 and 5	30.0
+sum of square root of 40 plus 60 and 21	31.0
