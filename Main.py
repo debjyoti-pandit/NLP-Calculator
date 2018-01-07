@@ -1,7 +1,7 @@
 import spacy
 import nltk
 from word2number import w2n
-import FileHandeling as file_list
+import trial3 as file_list
 import bracket as b
 nlp = spacy.load("en")
 
@@ -69,25 +69,77 @@ def merge_cd(l):
      l = remove_hash(l)
      return l
 
+def cal_root(new_list):
+##     print(new_list)
+     del new_list[0]
+     m = []
+     bc = 0
+     if new_list[0][1] == 'CD':
+          g = (int(new_list[0][0])**0.5)
+          return (int(new_list[0][0])**0.5)
+     else:
+          for w in new_list:
+               if w[1] != ')':
+                    if w[1] == '(':
+                         bc += 1
+                    m.append(w)
+               else:
+                    m.append(w)
+                    bc -= 1
+                    if bc == 0:
+                         break
+##          print("m: ",m)
+          v = evaluate(m)
+          return (int(v)**0.5)
+
 def evaluate(q):
     final_ques = ""
+    count = 0
     for w in q:
-         if w[1] != "CD":
-              if w[0] in sub:
-                   final_ques += "-"
-              elif w[0] in add:
-                   final_ques += "+"
-              elif w[0] in mult:
-                   final_ques += "*"
-              elif w[0] in div:
-                   final_ques += "/"
-              elif w[0] in brac:
+              count += 1
+              if w[1] != "CD":
+                   if w[0] in sub:
+                        final_ques += "-"
+                   elif w[0] in add:
+                        final_ques += "+"
+                   elif w[0] in mult:
+                        final_ques += "*"
+                   elif w[0] in div:
+                        final_ques += "/"
+                   elif w[0] in brac:
+                        final_ques += str(w[0])
+                   elif w[0] == "square":
+                        new_list = q[count:]
+                        gen = iter(new_list)
+                        next_value = gen.__next__()
+                        x = next_value
+                        if str(x[0]) == "root":
+                              rr = cal_root(new_list)
+##                              print("rr: ",rr)
+                              final_ques += str(rr)
+                        cc = 1
+                        bc = 0
+                        for ww in new_list:
+##                             print("for: ",ww[0])
+                             if ww[1] == 'CD' and cc:
+                                  del q[count]
+                                  del q[count]
+                                  break
+                             elif ww[1] == '(':
+                                  bc += 1
+                                  del q[count]
+                                  cc = 0
+                             elif ww[1] == ')':
+                                  bc -= 1
+                                  del q[count]
+                                  if bc == 0:
+                                       del q[count]
+                                       break
+                             else:
+                                  del q[count]                                   
+              else:
                    final_ques += str(w[0])
-##              elif w[0] == "point":
-##                   final_ques += "point"
-         else:
-              final_ques += str(w[0])
-    print(final_ques)
+##    print("before eval method: ",final_ques)
     return eval(final_ques)
     
 def remove_hash(l):
@@ -128,8 +180,13 @@ def calculate(string):
 ##     string = input("Enter your question: ")
      doc = nlp(string)
      main = ""
+##     for chunk in doc.noun_chunks:
+##         print(chunk.text, chunk.root.text, chunk.root.dep_,
+##               chunk.root.head.text)
      for token in doc:
-##         print(token.text,token.tag_)
+##         print(token.text, token.dep_, token.head.text, token.head.pos_,
+##          [child for child in token.children])
+####         print(token.text,token.tag_)
          if token.tag_ != "CD":
              token = str(token.lemma_)
          main += str(token)
@@ -145,6 +202,7 @@ def calculate(string):
 
      list_ques = merge_cd(list_ques)
      list_ques = b.precedence(list_ques)
+##     print(list_ques)
      ques = []
      ##expression function
      c1 = ['NN','VB','VBN','VBG','JJ']
@@ -156,7 +214,7 @@ def calculate(string):
      list_ques = remove_hash(list_ques)
      for w in list_ques:
           tl = w
-##          print("for:",w[0],"list becomes: ",ques)
+##        print("for:",w[0],"list becomes: ",ques)
           if w[1] in c1:
                if w[0] in nn_exp:
                     ques.append((w[0],w[1]))
@@ -201,9 +259,11 @@ def test():
      for w in l:
           m = w.split("\t")
           a = calculate(str(m[0]))
-          print("a: ",a," and ",m[1])
+##          print("a: ",a," and ",m[1])
           if str(a) == str(m[1]):
                ctr = ctr + 1
+          else:
+               file_list.error(m[0])
      print("No. of test case runned: ",len(l))
      print("No. of correct answer: ",ctr)
      print("Accuracy: ",(ctr/len(l))*100)
@@ -214,7 +274,12 @@ choice = str(input("please enter your choice: "))
 if choice == "1":
      test()
 elif choice == "2":
-##     zzz = str(input("please enter your ques: "))
-     print("The answer: ",calculate("product of sum of product of sum of product of sum of 2 and 3 and 4 and 5 and 6 and 7 and product of 2 and 3"))
+     zzz = str(input("please enter your ques: "))
+     print("The answer: ",calculate(zzz))
 else:
      print("please enter a valid input")
+
+
+
+##print("The answer: ",calculate("sum of square root of 40 plus 60 and 21"))
+
