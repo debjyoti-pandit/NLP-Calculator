@@ -37,6 +37,10 @@ class Stack:
      def size(self):
          return len(self.items)
 
+def check_int(s):
+    if s[0] in ('-', '+'):
+        return s[1:].isdigit()
+    return s.isdigit()
 ## for merging CD like one hundred two to 102
 def merge_cd(l):
      start = 0
@@ -44,6 +48,7 @@ def merge_cd(l):
      ctr = 0 #have seen 1 cardinal
      m = ""
      for w in l:
+          print("for: ",w," m: ",m)
           if w[1] == 'CD' or w[0] == 'point':
                ctr = 1
                m += str(w[0])
@@ -52,6 +57,7 @@ def merge_cd(l):
           else:
                if ctr == 1:
                     value = w2n.word_to_num(m.strip())
+                    print("value: ",value)
                     l[start] = (value,'CD')
                     start = start + 1
                     while (start<end):
@@ -160,7 +166,7 @@ def calculate(string):
      if not stack.isEmpty():
           del ques[0]
      ques = check_two_cd(ques)
-##     print("Expression for your question is = ",ques)
+     print("Expression for your question is = ",ques)
      ans = e.evaluate(ques)
      return ans
 
@@ -174,33 +180,35 @@ def test():
           if str(a) == str(m[1]):
                ctr = ctr + 1
           else:
+               print("Actual: ",str(m[1])," and calculated: ",a)
                file_list.error(m[0])
      print("No. of test case runned: ",len(l))
      print("No. of correct answer: ",ctr)
      print("Accuracy: ",(ctr/len(l))*100)
 
-print("press 1 to enter testing mode")
-print("press 2 to enter calculate mode")
-choice = str(input("please enter your choice: "))
-if choice == "1":
-     test()
-elif choice == "2":
-     zzz = str(input("please enter your ques: "))
-     answer = calculate(zzz)
-     print("The answer: ",answer)
-     print("do u wanna add this a test case (y/n)")
-     choice = str(input("enter: "))
-     if choice == "y" or "Y":
-          dev.add_element(zzz+"\t"+str(answer))
-else:
-     print("please enter a valid input")
+
+##print("press 1 to enter testing mode")
+##print("press 2 to enter calculate mode")
+##choice = str(input("please enter your choice: "))
+##if choice == "1":
+##     test()
+##elif choice == "2":
+##     zzz = str(input("please enter your ques: "))
+##     answer = calculate(zzz)
+##     print("The answer: ",answer)
+##     print("do u wanna add this a test case (y/n)")
+##     choice = str(input("enter: "))
+##     if choice == "y" or "Y":
+##          dev.add_element(zzz+"\t"+str(answer))
+##else:
+##     print("please enter a valid input")
 
 
-##zzz = "multiply the square of 2 plus 3 to five"
-##answer = calculate(zzz)
-##print("The answer: ",answer)
+zzz = "twenty 6 plus 3"
+answer = calculate(zzz)
+print("The answer: ",answer)
 ##print("do u wanna add this a test case (y/n)")
 ##choice = str(input("enter: "))
 ##if choice == "y" or "Y":
 ##     dev.add_element(zzz+"\t"+str(answer))
-     
+##     times
