@@ -1,6 +1,6 @@
 sub = ['subtraction','subtract','difference','minus','-']
 add = ['add','sum','addition','plus']
-mult = ['multiply','product','multiplication','into']
+mult = ['multiply','product','multiplication','into','time']
 div = ['division','divide','by']
 brac = ['(',')']
 
@@ -129,6 +129,7 @@ def cal_c(new_list):
         return cube
 
 def evaluate(q):
+##    print("in evaluate: ",q)
     final_ques = ""
     count = 0
     for w in q:
@@ -142,6 +143,8 @@ def evaluate(q):
                         final_ques += "*"
                    elif w[0] in div:
                         final_ques += "/"
+                   elif w[1] == ":":
+                        final_ques += str(w[0])
                    elif w[0] in brac:
                         final_ques += str(w[0])
                    elif w[0] == "cube":
@@ -207,7 +210,8 @@ def evaluate(q):
                                   del q[count]                                   
               else:
                    final_ques += str(w[0])
-##    print("before eval method: ",final_ques)
+    print("before eval method: ",final_ques)
     ggg = eval(final_ques)
     sss = float("{0:.6f}".format(ggg))
     return sss
+    
