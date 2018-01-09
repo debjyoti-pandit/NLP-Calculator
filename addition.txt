@@ -1,25 +1,45 @@
-Sum of three,four,five and six	18
-3 minus 6	-3
-addition of five and six	11
-eight - one	7
-difference of ten and three	7
-difference between eight and two	6
-subtract one from seven	6
-two minus one	1
-sum of 5 and ten	15
-product of sum of 5 and 6 and the sum of 7 and 8	165
-product of sum of 2 and 3 and 4	20
+Sum of three,four,five and six	18.0
+3 minus 6	-3.0
+addition of five and six	11.0
+eight - one	7.0
+difference of ten and three	7.0
+difference between eight and two	6.0
+subtract one from seven	6.0
+two minus one	1.0
+sum of 5 and ten	15.0
+product of sum of 5 and 6 and the sum of 7 and 8	165.0
+product of sum of 2 and 3 and 4	20.0
 what is the result when 105 is divided by 21	5.0
-add two million and three million	5000000
-what happens when 7676 is added to 24	7700
-what is the result after adding 25 and 75	100
-add fifty six with one hundred four	160
-product of sum of product of sum of product of sum of 2 and 3 and 4 and 5 and 6 and 7 and product of 2 and 3	942
-product of 5 and division of 100 by 10 with the product of addition of 5 and 6 and 7	3850
-sum of division of 3 by 6 and four and 3 multiplied by 7	25.5
-minus two multiplied by six	-12
-six added to the sum of minus two and minus seven	-3
-one plus minus two plus three plus minus four plus five	3
-sum of square root of 5 plus 7 and the product of 4 and 5	25.65685424949238
+add two million and three million	5000000.0
+what happens when 7676 is added to 24	7700.0
+what is the result after adding 25 and 75	100.0
+add fifty six with one hundred four	160.0
+product of sum of product of sum of product of sum of 2 and 3 and 4 and 5 and 6 and 7 and product of 2 and 3	942.0
+product of 5 and division of 100 by 10 with the product of addition of 5 and 6 and 7	3850.0
+sum of division of 3 by 6 and four and 3 multiplied by 7	52.5
+minus two multiplied by six	-12.0
+six added to the sum of minus two and minus seven	-3.0
+one plus minus two plus three plus minus four plus five	3.0
+sum of square root of 5 plus 7 and the product of 4 and 5	23.464102
 sum of square root of 40 plus 60 and the product of 4 and 5	30.0
 sum of square root of 40 plus 60 and 21	31.0
+what happens when two is added to the sum of 5 and 3	10.0
+two added to the result of 5 minus 1	6.0
+what is the result of the sum of seven, eight and 10	25.0
+square of 2	4.0
+square of 2 plus 3	25.0
+square root of 2 plus 3	2.236068
+multiply the square of 2 plus 3 to five	125.0
+cube of three	27.0
+cube of three added to seven	1000.0
+cube root of twenty seven	3.0
+cube of 6	216.0
+cube root of 216	6.0
+cube root of 195	5.79889
+square root of 195	13.96424
+-2.4 plus 3.6	1.2
+what will be the answer if we subtract one from six	5.0
+add seven	7.0
+multiply -109 and 567.35	-61841.15
+four times six	24.0
+subtract 56 from 100	44.0
