@@ -8,7 +8,7 @@ import evaluate as e
 nlp = spacy.load("en")
 
 ##GLOBAL VARIABLES
-c1 = ['NN','VB','VBN','VBG','JJ','NNS']
+c1 = ['NN','VB','VBN','VBG','JJ','NNS','VBP']
 c2 = ['CC','TO','SYM',',']
 prep = ['with','to','from','by']
 prep_direct = ['into','minus']
@@ -16,7 +16,7 @@ sub = ['subtraction','subtract','difference','minus','-']
 div = ['division','divide','by']
 nn_exp = ['result','cube','root','square','minus','point','time']
 conj_exp = ['minus','plus','time']
-check = ['NN','CC','CD','IN','JJ','TO','VB','VBN','SYM',',','HYPH',':']
+check = ['NN','CC','CD','IN','JJ','TO','VB','VBN','SYM',',','HYPH',':','VBP']
 union = ['subtraction','subtract','difference','minus','add','sum','addition','plus',
          'multiply','product','multiplication','into','division','divide','by']
 
@@ -67,7 +67,7 @@ def merge_cd(l):
      ctr = 0 #have seen 1 cardinal
      m = ""
      for w in l:
-##          print("forrrrrrrrr: ",w," m: ",m)
+##          print("forrrrrrrrr: ",w," m: ",ctr)
           if w[1] == 'CD' or w[0] == 'point':
                ctr = 1
                m += str(w[0])
@@ -90,16 +90,18 @@ def merge_cd(l):
                end = end + 1
                ctr = 0
                start = end
-     if is_number(m.strip()):
-          value = float(m.strip())
-     else:
-          value = w2n.word_to_num(m.strip())
+##     print("M:",l)
+     if m:
+          if is_number(m.strip()):
+               value = float(m.strip())
+          else:
+               value = w2n.word_to_num(m.strip())
 ##          print(l)
-     l[start] = (value,'CD')
-     start = start + 1
-     while (start<end):
-          l[start] = "###"
+          l[start] = (value,'CD')
           start = start + 1
+          while (start<end):
+               l[start] = "###"
+               start = start + 1
 ##     print(l)
      l = remove_hash(l)
 ##     print("after",l)
@@ -167,7 +169,7 @@ def calculate(string):
      ppp = ""
      for w in list_ques:
           tl = w
-##          print("for:",w[0],"list becomes: ",ques)
+##          print("for:",w[0])
           if w[1] in c1:
                if w[0] in nn_exp:
                     ques.append((w[0],w[1]))
@@ -175,6 +177,7 @@ def calculate(string):
                     stack.push(w[0])
                     temporary = w[0]
                     ppp = temporary
+##                    print(temporary)
           elif w[1] in c2:
                if w[1] == "SYM":
                     ques.append((w[0],w[1]))
@@ -261,7 +264,7 @@ elif choice == "2":
 else:
      print("please enter a valid input")
 
-##zzz = "subtract 56 from 100"
+##zzz = "adding 1 to 9 yields?"
 ##answer = calculate(zzz)
 ##print("The answer: ",answer)
 ##
