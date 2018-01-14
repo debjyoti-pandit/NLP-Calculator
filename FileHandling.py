@@ -22,3 +22,16 @@ def test():
     addfile.close()
     return l
 
+def error(string):
+    path = '/Users/ChiefAmay/Desktop/calculator/Subtraction.txt'
+    subfile = open(path,'r')
+    init = subfile.readlines()
+    updated = ""
+    string += "\n"
+    if string not in init:
+        subfile = open(path,'r')
+        updated = subfile.read()
+        updated +=string
+        subfile = open(path,'w')
+        subfile.write(updated)
+    subfile.close()
