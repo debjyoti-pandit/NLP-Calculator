@@ -19,4 +19,4 @@ def input_to_file():
         answer = input('Enter the result: ')
         add_element(str(question+'\t'+answer))
 
-input_to_file()
+##input_to_file()
