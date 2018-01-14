@@ -137,6 +137,8 @@ def evaluate(q):
               if w[1] != "CD":
                    if w[0] in sub:
                         final_ques += "-"
+                   elif w[1] == 'SYM':
+                        final_ques += str(w[0])
                    elif w[0] in add:
                         final_ques += "+"
                    elif w[0] in mult:
@@ -214,4 +216,3 @@ def evaluate(q):
     ggg = eval(final_ques)
     sss = float("{0:.6f}".format(ggg))
     return sss
-    
