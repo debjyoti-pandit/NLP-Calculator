@@ -43,3 +43,23 @@ add seven	7.0
 multiply -109 and 567.35	-61841.15
 four times six	24.0
 subtract 56 from 100	44.0
+sum of twenty five, five, sixty, seventy, point five and eight	168.5
+sum of 8.9, 7.1 and - 4	12.0
+what happens when we add one, two, three and four to 10	20.0
+seventy eight minus thirty eight	40.0
+123 - 23	100.0
+45 + 67 + 55	167.0
+one thousand ninety minus six hundred sixty six	424.0
+sum of - 1 and - 79	-80.0
+what is the sum of 13 and fifteen	28.0
+what is the sum of 112 and 555	667.0
+what is the sum of 23.856 and 1.144	25.0
+sum of six point seven, two point three and one	10.0
+what is the value of 67 - 27	40.0
+what is the value of one hundred twenty five minus six hundred twenty five	-500.0
+what is the addition of 110 and ninety	200.0
+what happens when 99 is added to 101	200.0
+what happens when fifty five is added to the result of the sum of 22 and 33	110.0
+adding 1 to 9 yields?	10.0
+what is the value after adding six to seven	13.0
+what is the result after the addition of 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10	55.0
